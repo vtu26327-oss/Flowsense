@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlowSense - Your magical, AI-powered menstrual health companion.">
+    <meta name="theme-color" content="#F06292">
+    <title>Dashboard | FlowSense App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background: #f8fafc;">
+
+    <!-- Cute Decorative Background Elements -->
+    <div class="bg-decor" style="top: 8%; left: 4%; font-size: 3rem;">🌸</div>
+    <div class="bg-decor" style="top: 15%; right: 7%; font-size: 2.5rem; animation-delay: -2s;">✨</div>
+    <div class="bg-decor" style="bottom: 12%; left: 12%; font-size: 2rem; animation-delay: -4s;">💖</div>
+    <div class="bg-decor" style="bottom: 8%; right: 4%; font-size: 3.5rem; animation-delay: -6s;">☁️</div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i data-lucide="droplet" style="color: #F06292;"></i>
+                FlowSense ✨
+            </div>
+
+            <div style="margin-top: 2rem; flex: 1; overflow-y: auto;">
+                <div class="nav-item active" onclick="switchTab('tracker')">
+                    <i data-lucide="calendar"></i>
+                    <span>Cycle Tracker 📅</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('analyzer')">
+                    <i data-lucide="activity"></i>
+                    <span>Blood Analysis 🩸</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('guide')">
+                    <i data-lucide="book-open"></i>
+                    <span>Blood Guide 📖</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('insights')">
+                    <i data-lucide="bar-chart-2"></i>
+                    <span>Insights 📈</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('relief')">
+                    <i data-lucide="heart-handshake"></i>
+                    <span>Relief & Exercises 🌸</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('diet')">
+                    <i data-lucide="apple"></i>
+                    <span>Diet & Nutrition 🍎</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('scan')">
+                    <i data-lucide="camera"></i>
+                    <span>AI Vision Scan 📸</span>
+                </div>
+            </div>
+
+            <div class="nav-item" onclick="handleLogout()" style="color: var(--deep-pink); border-top: 1px solid var(--soft-pink); margin-top: auto;">
+                <i data-lucide="log-out"></i>
+                <span>Logout 🌸</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Tracker Tab -->
+            <section id="tab-tracker" class="app-tab">
+                <header
+                    style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-right: 2rem;">
+                            <div>
+                                <h2 class="text-gradient">Welcome back, Sarah</h2>
+                                <p>Track your cycle and predict the next one.</p>
+                            </div>
+                            <button class="btn btn-secondary" onclick="handleLogout()" style="padding: 0.5rem 1rem; font-size: 0.8rem; display: flex; align-items: center; gap: 5px; border-radius: 50px;">
+                                <i data-lucide="log-out" style="width: 14px;"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                    <div id="quick-reminder-card" class="card"
+                        style="padding: 1rem; border-radius: 15px; background: var(--pale-lavender);">
+                        <p style="font-size: 0.8rem; font-weight: 700; color: var(--deep-pink);">💖 Reminder:</p>
+                        <p id="dynamic-reminder" style="font-size: 0.85rem;">Don't forget to hydrate today! 💧</p>
+                    </div>
+                </header>
+
+                <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem;">
+                    <div>
+                        <div class="calendar-card">
+                            <div class="calendar-header">
+                                <h3 id="current-month">March 2026</h3>
+                                <div style="display: flex; gap: 1rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.4rem;" onclick="prevMonth()"><i
+                                            data-lucide="chevron-left"></i></button>
+                                    <button class="btn btn-secondary" style="padding: 0.4rem;" onclick="nextMonth()"><i
+                                            data-lucide="chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="calendar-grid" id="calendar-days">
+                                <!-- Days will be generated by JS -->
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin-top: 2rem; border: 1px dashed var(--accent-purple);">
+                            <h4><i data-lucide="calendar-plus"
+                                    style="vertical-align: middle; margin-right: 0.5rem; width: 18px;"></i> Log Period
+                                Dates</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr 0.5fr; gap: 1rem; margin-top: 1rem;">
+                                <div>
+                                    <label style="font-size: 0.75rem; color: var(--text-light);">Start Date</label>
+                                    <input type="date" id="period-start" class="form-control"
+                                        style="font-size: 0.85rem;">
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.75rem; color: var(--text-light);">End Date</label>
+                                    <input type="date" id="period-end" class="form-control" style="font-size: 0.85rem;">
+                                </div>
+                                <div style="display: flex; align-items: flex-end;">
+                                    <button class="btn btn-primary" onclick="logPeriodDates()"
+                                        style="width: 100%; padding: 0.7rem;"><i data-lucide="check"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div class="card" style="background: var(--gradient-primary); color: var(--accent-purple);">
+                            <h4>Next Period In</h4>
+                            <h2 id="next-period-countdown" style="font-size: 3rem; margin: 0.5rem 0;">-- Days</h2>
+                        </div>
+                        <div class="card" style="margin-top: 1.5rem;">
+                            <h4>Cycle History</h4>
+                            <div id="cycle-history-list"
+                                style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem;"></div>
+                        </div>
+
+                        <!-- Personal Reminders Card -->
+                        <div class="card" style="margin-top: 1.5rem; border: 2px solid var(--soft-pink);">
+                            <h4>My Magical Notes ✨</h4>
+                            <div style="margin-top: 1rem;">
+                                <input type="text" id="custom-reminder-input" class="form-control"
+                                    placeholder="Add a personal note..."
+                                    style="font-size: 0.85rem; margin-bottom: 0.8rem;">
+                                <button class="btn btn-secondary"
+                                    style="width: 100%; padding: 0.6rem; font-size: 0.8rem;"
+                                    onclick="addCustomReminder()">Add Reminder 💖</button>
+                            </div>
+                            <div id="custom-reminders-list"
+                                style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; max-height: 200px; overflow-y: auto;">
+                                <!-- User notes populating here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analyzer Tab -->
+            <section id="tab-analyzer" class="app-tab" style="display: none;">
+                <header style="margin-bottom: 2rem;">
+                    <h2 class="text-gradient">Blood Analysis Tool</h2>
+                    <p>Analyze the clinical indicators of your current flow.</p>
+                </header>
+                <div class="risk-dashboard">
+                    <div class="symptom-form">
+                        <h3>Today's Observations</h3>
+                        <div style="display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem;">
+                            <div>
+                                <label>Blood Color</label>
+                                <select id="app-color" class="form-control">
+                                    <option value="bright-red">Bright Red (Fresh)</option>
+                                    <option value="dark-red">Dark Red (Normal)</option>
+                                    <option value="brown">Brown (Old Flow)</option>
+                                    <option value="pink">Pinkish (Light)</option>
+                                    <option value="blackish">Blackish / Grayish (Infection?)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Flow Intensity</label>
+                                <select id="app-flow" class="form-control">
+                                    <option value="light">Light</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="heavy">Extremely Heavy</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Clots Detected</label>
+                                <select id="app-clots" class="form-control">
+                                    <option value="none">None</option>
+                                    <option value="small">Small (Normal)</option>
+                                    <option value="large">Large (>1 inch)</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; gap: 1rem;">
+                                <label><input type="checkbox" id="app-fatigue"> Feeling Dizzy/Fatigued?</label>
+                            </div>
+                            <div style="display: flex; gap: 1rem;">
+                                <label><input type="checkbox" id="app-pain"> Severe Pain?</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="runAppAnalysis()">Analyze Data</button>
+                        </div>
+                    </div>
+                    <div class="risk-results">
+                        <div class="risk-meter-container" style="border-right: none;">
+                            <div class="badge badge-low" id="app-risk-badge">ANALYSIS READY</div>
+                            <div id="app-recommendations"
+                                style="text-align: left; margin-top: 1.5rem; font-size: 0.85rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Guide Tab -->
+            <section id="tab-guide" class="app-tab" style="display: none;">
+                <header style="margin-bottom: 2rem;">
+                    <h2 class="text-gradient">Blood Type Guide</h2>
+                    <p>Understand what your menstrual blood reveals about your health.</p>
+                </header>
+                <div class="blood-type-grid">
+                    <div class="card" style="border-left: 10px solid #FF4081;">
+                        <h4>Bright Red</h4>
+                        <p>Healthy/Normal flow. Signaling fresh blood flow from the uterus.</p>
+                    </div>
+                    <div class="card" style="border-left: 10px solid #C2185B;">
+                        <h4>Dark Red</h4>
+                        <p>Normal blood that has reacted with oxygen inside the uterus longer.</p>
+                    </div>
+                    <div class="card" style="border-left: 10px solid #795548;">
+                        <h4>Brown</h4>
+                        <p>Typical old blood. Common at the very beginning or end of your period.</p>
+                    </div>
+                    <div class="card" style="border-left: 10px solid #212121;">
+                        <h4>Blackish</h4>
+                        <p>Alert! Could signal infection or a long-term blockage. Consult a doctor.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Insights Tab -->
+            <section id="tab-insights" class="app-tab" style="display: none;">
+                <header style="margin-bottom: 2rem;">
+                    <h2 class="text-gradient">Health Insights</h2>
+                    <p>Analyzing your cycle patterns for 100% precision wellness.</p>
+                </header>
+                <div class="card" style="text-align: center; padding: 5rem;">
+                    <i data-lucide="sparkles" class="animate-pulse"
+                        style="width: 50px; height: 50px; color: var(--deep-pink); margin-bottom: 1.5rem;"></i>
+                    <p>Generating your AI health summary... ✨</p>
+                </div>
+            </section>
+
+            <!-- Relief & Exercises Tab -->
+            <section id="tab-relief" class="app-tab" style="display: none;">
+                <header style="margin-bottom: 2rem;">
+                    <h2 class="text-gradient">Remedies & Gentle Exercises</h2>
+                    <p>Soothing self-care routines for cramps and fatigue.</p>
+                </header>
+                <div style="display: grid; grid-template-columns: 1.2fr 1.5fr; gap: 2rem;">
+                    <div class="card" style="height: fit-content;">
+                        <img src="period_remedies_set_1772381203450.png"
+                            style="width: 100%; border-radius: 20px; margin-bottom: 1.5rem;" alt="Remedies">
+                        <h4>Natural Remedies 🍵</h4>
+                        <ul style="margin-top: 1rem; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li><strong>Heat Therapy:</strong> Relaxes uterine muscles effectively.</li>
+                            <li><strong>Ginger Tea:</strong> Anti-inflammatory properties reduce prostaglandins.</li>
+                            <li><strong>Hydration:</strong> Drink 8-10 glasses of water to reduce bloating.</li>
+                            <li><strong>Warm Bath:</strong> Relaxes the entire pelvic floor.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 1.5rem; color: var(--deep-pink);">Guided Magical Exercises ✨</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="card" style="padding: 1.2rem; text-align: center;">
+                                <img src="childs_pose_illustration_1772381504089.png"
+                                    style="width: 100%; border-radius: 15px; margin-bottom: 0.8rem;" alt="Child's Pose">
+                                <h5 style="font-size: 0.85rem;">Child's Pose 🌸</h5>
+                                <p style="font-size: 0.7rem; color: var(--text-light); margin-top: 5px;">Relieves lower
+                                    back pain.</p>
+                            </div>
+                            <div class="card" style="padding: 1.2rem; text-align: center;">
+                                <img src="cat_cow_pose_illustration_1772381522456.png"
+                                    style="width: 100%; border-radius: 15px; margin-bottom: 0.8rem;" alt="Cat-Cow">
+                                <h5 style="font-size: 0.85rem;">Cat-Cow Stretch 🐱</h5>
+                                <p style="font-size: 0.7rem; color: var(--text-light); margin-top: 5px;">Massages your
+                                    tummy.</p>
+                            </div>
+                            <div class="card" style="padding: 1.2rem; text-align: center;">
+                                <img src="legs_up_wall_illustration_1772381542854.png"
+                                    style="width: 100%; border-radius: 15px; margin-bottom: 0.8rem;"
+                                    alt="Legs-up-the-wall">
+                                <h5 style="font-size: 0.85rem;">Legs-Up-Wall ☁️</h5>
+                                <p style="font-size: 0.7rem; color: var(--text-light); margin-top: 5px;">Boosts
+                                    circulation.</p>
+                            </div>
+                            <div class="card"
+                                style="padding: 1.2rem; text-align: center; background: var(--pale-lavender); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;">
+                                <i data-lucide="sparkles" style="color: var(--deep-pink);"></i>
+                                <h5 style="font-size: 0.85rem;">Stay Calm 💖</h5>
+                                <p style="font-size: 0.65rem; color: var(--text-light);">You're doing great!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Food Diet Tab -->
+            <section id="tab-diet" class="app-tab" style="display: none;">
+                <header style="margin-bottom: 2rem;">
+                    <h2 class="text-gradient">Period-Specific Diet</h2>
+                    <p>Fuel your body with the right nutrients at every stage of your cycle.</p>
+                </header>
+                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem;">
+                    <div class="card">
+                        <img src="period_healthy_food_1772381223282.png"
+                            style="width: 100%; border-radius: 20px; margin-bottom: 1.5rem;" alt="Healthy Food">
+                        <div id="dynamic-diet-content">
+                            <!-- Diet plan generated by AI/JS -->
+                        </div>
+                    </div>
+                    <div class="card" style="background: var(--pale-lavender);">
+                        <h4>Quick Nutrition Check 🍎</h4>
+                        <p style="font-size: 0.85rem; margin-top: 1rem; line-height: 1.6;">
+                            Your current condition suggests focusing on <strong>Anti-inflammatory</strong> foods.
+                            <br><br>
+                            ✨ <strong>Today's Tip:</strong> Avoid high-sugar foods today to prevent insulin spikes that
+                            increase prostaglandin-related pain.
+                        </p>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: 1.5rem;"
+                            onclick="generateDailyDiet()">Refresh Diet Plan ✨</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Vision Scan Tab -->
+            <section id="tab-scan" class="app-tab" style="display: none;">
+                <header style="margin-bottom: 2rem;">
+                    <h2 class="text-gradient">AI Vision Pad Scan</h2>
+                    <p>AI-assisted blood color detection for clinical indicators.</p>
+                </header>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div class="card" style="text-align: center; border: 3px dashed var(--soft-pink);">
+                        <div id="scan-preview-container"
+                            style="position: relative; margin-bottom: 1.5rem; display: none;">
+                            <img id="scan-preview"
+                                style="width: 100%; border-radius: 20px; max-height: 300px; object-fit: cover;">
+                            <div id="scan-line"
+                                style="position: absolute; top:0; left:0; width:100%; height:4px; background: var(--gradient-cute); display:none;">
+                            </div>
+                        </div>
+                        <div id="upload-placeholder">
+                            <i data-lucide="upload-cloud"
+                                style="width: 50px; height: 50px; color: var(--deep-pink);"></i>
+                            <p style="margin-top: 1rem;">Upload pad photo ✨</p>
+                        </div>
+                        <input type="file" id="pad-photo" accept="image/*" style="display: none;"
+                            onchange="previewScan(event)">
+                        <button class="btn btn-secondary" onclick="document.getElementById('pad-photo').click()"
+                            style="margin-top: 1.5rem;">Pick Photo 📸</button>
+                        <button id="analyze-btn" class="btn btn-primary" onclick="startAIScan()"
+                            style="display: none; width: 100%; margin-top: 1rem;">Analyze ✨</button>
+                    </div>
+                    <div class="card">
+                        <h4>Analysis Result</h4>
+                        <div id="scan-status" style="margin: 1.5rem 0; font-size: 0.9rem;">Waiting...</div>
+                        <div id="scan-result-box" style="display: none;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                <div id="detected-color-box" style="width: 40px; height: 40px; border-radius: 50%;">
+                                </div>
+                                <h3 id="detected-color-name">--</h3>
+                            </div>
+                            <p id="detected-info" style="font-size: 0.9rem; margin-bottom: 2rem;"></p>
+                            <label style="font-size: 0.8rem; font-weight: 700;">Voice Language:</label>
+                            <select id="tts-lang" class="form-control" style="margin-bottom: 1rem;">
+                                <option value="en-US">English</option>
+                                <option value="hi-IN">Hindi (हिंदी)</option>
+                                <option value="ta-IN">Tamil (தமிழ்)</option>
+                                <option value="te-IN">Telugu (తెలుగు)</option>
+                            </select>
+                            <button class="btn btn-secondary" onclick="speakResult()" style="width: 100%;"><i
+                                    data-lucide="volume-2"></i> Hear Result ✨</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Login Overlay -->
+    <div id="login-overlay"
+        style="position: fixed; top:0; left:0; width:100%; height:100%; background: var(--gradient-soft); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+        <div class="card" style="max-width: 420px; width: 90%; text-align: center;">
+            <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">FlowSense ✨</div>
+            <div id="login-fields">
+                <h2 id="login-title">Hello, Gorgeous! 🌸</h2>
+                <p id="login-subtitle" style="margin-bottom: 2rem;">Unlock your clinical cycle tracker.</p>
+                <input type="text" id="login-user" class="form-control" placeholder="What's your name?"
+                    style="margin-bottom: 1rem;">
+                <input type="password" id="login-pass" class="form-control" placeholder="Magical Code"
+                    style="margin-bottom: 1.5rem;">
+                <button id="auth-btn" class="btn btn-primary" style="width: 100%;" onclick="handleAuth()">Step Inside ✨</button>
+                <p style="margin-top: 1.5rem; font-size: 0.85rem;">
+                    <span id="toggle-text">New here?</span> 
+                    <a href="#" onclick="toggleAuthMode()" id="toggle-btn" style="color: var(--deep-pink); font-weight: 700; text-decoration: none;">Sign Up 🪄</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app-logic.js"></script>
+</body>
+
+</html>

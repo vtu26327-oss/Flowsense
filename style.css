@@ -1,0 +1,397 @@
+:root {
+    /* Enhanced "Magical & Girly" Palette */
+    --soft-pink: #FCE4EC;
+    --deep-pink: #F06292;
+    --pale-lavender: #F3E5F5;
+    --cute-purple: #BA68C8;
+    --magical-gold: #FFF59D;
+    --white: #FFFFFF;
+    --text-dark: #4A148C;
+    --text-light: #7B1FA2;
+
+    /* Soft Dreamy Gradients */
+    --gradient-primary: linear-gradient(135deg, #F8BBD0 0%, #E1BEE7 100%);
+    --gradient-soft: linear-gradient(135deg, #FFF0F6 0%, #F8F0FF 100%);
+    --gradient-magical: linear-gradient(45deg, #F06292, #BA68C8, #FFF59D);
+    --gradient-glass: rgba(255, 255, 255, 0.85);
+
+    /* Shadows & Radii */
+    --card-shadow: 0 20px 40px rgba(240, 98, 146, 0.12);
+    --hover-shadow: 0 30px 60px rgba(186, 104, 200, 0.2);
+    --radius-xl: 40px;
+    --radius-lg: 30px;
+    --radius-md: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+body {
+    background: var(--gradient-soft);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23F06292"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+}
+
+/* Custom Cursor for links */
+a,
+button,
+.nav-item,
+.day {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23BA68C8"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>'), pointer;
+}
+
+/* Background Magic Objects */
+.bg-decor {
+    position: fixed;
+    z-index: -1;
+    opacity: 0.4;
+    pointer-events: none;
+    animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    33% {
+        transform: translateY(-30px) rotate(10deg);
+    }
+
+    66% {
+        transform: translateY(15px) rotate(-10deg);
+    }
+}
+
+/* Layout */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 290px;
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    padding: 3rem 2rem;
+    border-right: 3px solid var(--soft-pink);
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    border-radius: 0 40px 40px 0;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--deep-pink);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-shadow: 2px 2px 0 var(--soft-pink);
+}
+
+.nav-item {
+    padding: 1.2rem 1.8rem;
+    border-radius: var(--radius-md);
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    border: 2px solid transparent;
+}
+
+.nav-item:hover {
+    background: var(--white);
+    transform: translateX(12px) scale(1.05);
+    color: var(--deep-pink);
+    border-color: var(--soft-pink);
+    box-shadow: var(--card-shadow);
+}
+
+.nav-item.active {
+    background: var(--gradient-cute, linear-gradient(45deg, #F06292, #BA68C8));
+    color: var(--white);
+    box-shadow: 0 12px 24px rgba(240, 98, 146, 0.25);
+}
+
+.main-content {
+    flex: 1;
+    padding: 4rem 8%;
+}
+
+/* Magical Cards */
+.card {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--card-shadow);
+    transition: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 2px solid rgba(240, 98, 146, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '✨';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.2rem;
+    opacity: 0.2;
+}
+
+.card:hover {
+    transform: scale(1.03) translateY(-15px);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--soft-pink);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-soft);
+    color: var(--cute-purple);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Pink Buttons */
+.btn {
+    padding: 1.2rem 2.5rem;
+    border-radius: 60px;
+    font-weight: 800;
+    transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: var(--gradient-cute, linear-gradient(45deg, #F06292, #BA68C8));
+    color: white;
+    box-shadow: 0 12px 30px rgba(240, 98, 146, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.08);
+    box-shadow: 0 20px 40px rgba(240, 98, 146, 0.4);
+}
+
+/* Calendar: Styled rows and columns */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 3px solid var(--soft-pink);
+    border-radius: 30px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+}
+
+.day-name {
+    padding: 1.5rem 0;
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: var(--white);
+    background: var(--cute-purple);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+}
+
+.day {
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border-bottom: 2px solid var(--soft-pink);
+    border-right: 2px solid var(--soft-pink);
+    transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.day:hover {
+    background: var(--soft-pink);
+    color: var(--deep-pink);
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.day.period {
+    background: var(--deep-pink);
+    color: white;
+    border-color: #EF5350;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        background: #F06292;
+    }
+
+    50% {
+        background: #EC407A;
+    }
+
+    100% {
+        background: #F06292;
+    }
+}
+
+.day.prediction {
+    background: #FFEBEE;
+    border: 3px dashed var(--deep-pink);
+    color: var(--deep-pink);
+}
+
+.day-empty {
+    background: #FFFBFF;
+    border-right: 2px solid var(--soft-pink);
+    border-bottom: 2px solid var(--soft-pink);
+}
+
+/* Login Beauty */
+#login-overlay {
+    backdrop-filter: blur(40px);
+}
+
+/* Typography Gradient */
+.text-gradient {
+    background: linear-gradient(45deg, #F06292, #BA68C8, #9C27B0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Form Polish */
+.form-control {
+    border: 3px solid var(--pale-lavender);
+    padding: 1.2rem;
+    border-radius: 20px;
+    background: #FFFBFF;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-control:focus {
+    border-color: var(--deep-pink);
+    box-shadow: 0 0 20px rgba(240, 98, 146, 0.15);
+}
+
+/* Mobile Polish */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: 90px;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        flex-direction: row;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.98);
+        border-top: 4px solid var(--soft-pink);
+        border-radius: 40px 40px 0 0;
+    }
+
+    .nav-item {
+        flex-direction: column;
+        font-size: 0.65rem;
+        padding: 0.5rem;
+        gap: 4px;
+    }
+
+    .logo {
+        display: none;
+    }
+}
+
+/* Reminder & Diet Polish */
+#reminders-count {
+    background: var(--gradient-cute);
+    color: white !important;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(240, 98, 146, 0.3);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#quick-reminder-card {
+    border: 2px solid var(--soft-pink);
+    box-shadow: 0 8px 20px rgba(240, 98, 146, 0.1);
+    transition: 0.3s;
+}
+
+#quick-reminder-card:hover {
+    transform: translateY(-5px) rotate(1deg);
+    background: white !important;
+}
+
+#dynamic-diet-content ul li {
+    background: rgba(240, 98, 146, 0.05);
+    padding: 0.8rem;
+    border-radius: 12px;
+    list-style: none;
+    position: relative;
+    padding-left: 2.8rem;
+    margin-bottom: 0.8rem;
+}
+
+#dynamic-diet-content ul li::before {
+    content: '🥗';
+    position: absolute;
+    left: 1rem;
+    font-size: 1.2rem;
+}
+
+.logo i {
+    animation: heartbeat 2s infinite ease-in-out;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Scrollbar Beauty */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--soft-pink);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--cute-purple);
+    border-radius: 10px;
+}

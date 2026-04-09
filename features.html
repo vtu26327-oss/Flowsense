@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features | FlowSense - Advanced Menstrual Health</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .feature-hero {
+            padding: 160px 10% 80px;
+            text-align: center;
+            background: var(--gradient-soft);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            padding: 80px 10%;
+        }
+
+        .f-card {
+            background: #fff;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--lavender);
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            cursor: pointer;
+        }
+
+        .f-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--accent-purple);
+        }
+
+        .f-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0;
+            background: var(--gradient-primary);
+            transition: 0.4s ease;
+        }
+
+        .f-card:hover::before {
+            width: 100%;
+        }
+
+        .f-card h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <i data-lucide="droplet" style="color: #9C27B0;"></i>
+            <a href="index.html" style="text-decoration: none; color: inherit;">FlowSense</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="features.html" style="color: var(--accent-purple);">Features</a></li>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="index.html#dashboard">Demo</a></li>
+        </ul>
+        <a href="index.html#dashboard" class="btn btn-primary"
+            style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Analyze Now</a>
+    </nav>
+
+    <header class="feature-hero">
+        <h1 class="text-gradient">Professional Menstrual Analysis</h1>
+        <p style="max-width: 800px; margin: 2rem auto; font-size: 1.2rem; color: var(--text-light);">
+            Explore the advanced clinical tools we've built to transform how you understand your cycle and overall
+            health.
+        </p>
+    </header>
+
+    <div class="feature-grid">
+        <div class="f-card">
+            <div class="card-icon"><i data-lucide="activity"></i></div>
+            <h3>Menstrual Cycle Tracking</h3>
+            <p>Smart logging of dates, but more importantly, logging the <strong>nature</strong> of your cycle. We track
+                how your body changes across phases with precision.</p>
+        </div>
+        <div class="f-card">
+            <div class="card-icon"><i data-lucide="search"></i></div>
+            <h3>Health Risk Detection</h3>
+            <p>Our rule-based AI analyzes over 50 data points from blood color to fatigue levels to identify early
+                warning signs of gynecological issues.</p>
+        </div>
+        <div class="f-card">
+            <div class="card-icon"><i data-lucide="clipboard-check"></i></div>
+            <h3>Personalized Reports</h3>
+            <p>Generate detailed clinical summaries that help you communicate effectively with your doctor. No more
+                forgetting symptoms during consultations.</p>
+        </div>
+        <div class="f-card">
+            <div class="card-icon"><i data-lucide="lock"></i></div>
+            <h3>Privacy & Data Security</h3>
+            <p>We use military-grade encryption for all stored data. Your health history is for your eyes only—not for
+                third-party advertisers.</p>
+        </div>
+        <div class="f-card">
+            <div class="card-icon"><i data-lucide="shield"></i></div>
+            <h3>Preventive Suggestions</h3>
+            <p>Proactive health advice based on your history. Learn what lifestyle changes or tests might benefit you
+                before issues arise.</p>
+        </div>
+        <div class="f-card">
+            <div class="card-icon"><i data-lucide="stethosocope"></i></div>
+            <h3>Doctor Consultation Alerts</h3>
+            <p>Coming soon: Automated alerts when critical symptom patterns are detected, recommending an immediate
+                clinical visit.</p>
+        </div>
+    </div>
+
+    <!-- Future Enhancement Section -->
+    <section id="future" style="background: var(--gradient-soft); padding: 5rem 10%;">
+        <div class="section-header">
+            <h2>Future Enhancements</h2>
+            <p>Our roadmap for even deeper health insights.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h4>AI Prediction</h4>
+                <p>Neural networks trained on thousands of clinical datasets for predictive health forecasting.</p>
+            </div>
+            <div class="card">
+                <h4>Wearable Integration</h4>
+                <p>Sync with Garmin, Apple Watch, or Oura for heart rate and temperature correlation.</p>
+            </div>
+            <div class="card">
+                <h4>Teleconsultation</h4>
+                <p>Connect with gynecological specialists directly through encrypted video within the app.</p>
+            </div>
+            <div class="card">
+                <h4>Multilingual Support</h4>
+                <p>Bringing FlowSense to 20+ languages to empower women globally.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 60px 10%; border-top: 1px solid var(--lavender); text-align: center;">
+        <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
+            <i data-lucide="droplet" style="color: #9C27B0;"></i>
+            FlowSense
+        </div>
+        <p style="color: var(--text-light); font-size: 0.8rem;">© 2026 FlowSense Health. Not a substitute for
+            professional medical advice.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
